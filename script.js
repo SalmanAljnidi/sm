@@ -51,11 +51,20 @@ function nextQuestion() {
   }
   answers.sort(() => Math.random() - 0.5);
   answers.forEach(ans => {
-    const btn = document.createElement('button');
-    btn.textContent = arabicNumber(ans);
-    btn.onclick = () => checkAnswer(ans === correct);
-    choicesEl.appendChild(btn);
-  });
+  const btn = document.createElement('button');
+  btn.textContent = arabicNumber(ans);
+  btn.onclick = () => {
+    if (ans === correct) {
+      correctSound.currentTime = 0;
+      correctSound.play();
+    } else {
+      wrongSound.currentTime = 0;
+      wrongSound.play();
+    }
+    checkAnswer(ans === correct);
+  };
+  choicesEl.appendChild(btn);
+});
   seconds = 15;
   timerEl.textContent = arabicNumber(seconds);
   clearInterval(timer);
