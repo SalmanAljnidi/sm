@@ -87,11 +87,16 @@ function nextQuestion() {
 
 function checkAnswer(correct) {
   clearInterval(timer);
+  
   if (correct) {
+    correctSound.currentTime = 0;
+    correctSound.play();
     score++;
     scoreEl.textContent = arabicNumber(score);
     setTimeout(nextQuestion, 1000);
   } else {
+    wrongSound.currentTime = 0;
+    wrongSound.play();
     endGame();
   }
 }
