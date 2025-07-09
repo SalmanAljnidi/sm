@@ -35,3 +35,7 @@ footer img { width: 32px; margin: 0 10px; vertical-align: middle; }
 #choices button {
   width: 60%;
 }
+.selected {
+  background-color: #ffc107 !important; /* لون أصفر واضح */
+  color: #000; /* خلي النص أسود علشان يبان */
+}
