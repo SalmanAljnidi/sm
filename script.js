@@ -72,17 +72,18 @@ function nextQuestion() {
   choicesEl.appendChild(btn);
 });
   seconds = 15;
+timerEl.textContent = arabicNumber(seconds);
+clearInterval(timer);
+timer = setInterval(() => {
+  seconds--;
   timerEl.textContent = arabicNumber(seconds);
-  clearInterval(timer);
-  timer = setInterval(() => {
-    seconds--;
-    timerEl.textContent = arabicNumber(seconds);
-    if (seconds === 0) {
-      clearInterval(timer);
-      timeoutSound.play();
-      checkAnswer(false);
-    }
-  }, 1000);
+  if (seconds === 0) {
+    clearInterval(timer);
+    timeoutSound.currentTime = 0;
+    timeoutSound.play();
+    checkAnswer(false);
+  }
+}, 1000);
 }
 
 function checkAnswer(correct) {
