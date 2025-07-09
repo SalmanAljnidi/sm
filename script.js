@@ -90,16 +90,20 @@ function checkAnswer(correct) {
   clearInterval(timer);
   
   if (correct) {
-    correctSound.currentTime = 0;
-    correctSound.play();
-    score++;
-    scoreEl.textContent = arabicNumber(score);
-    setTimeout(nextQuestion, 1000);
-  } else {
-    wrongSound.currentTime = 0;
-    wrongSound.play();
-    endGame();
-  }
+  correctSound.currentTime = 0;
+  correctSound.play();
+  score++;
+  scoreEl.textContent = arabicNumber(score);
+  
+  // بعد ما ينتهي صوت الإجابة الصحيحة، ننتقل للسؤال التالي
+  correctSound.onended = () => {
+    nextQuestion();
+  };
+} else {
+  wrongSound.currentTime = 0;
+  wrongSound.play();
+  endGame();
+}
 }
 
 function endGame() {
