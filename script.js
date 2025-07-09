@@ -72,13 +72,22 @@ function nextQuestion() {
 
 function checkAnswer(correct) {
   clearInterval(timer);
+
+  // ✨ تشغيل الصوت فورًا عند الضغط
   if (correct) {
+    correctSound.currentTime = 0;
     correctSound.play();
+  } else {
+    wrongSound.currentTime = 0;
+    wrongSound.play();
+  }
+
+  // ثم تنفيذ باقي المنطق
+  if (correct) {
     score++;
     scoreEl.textContent = arabicNumber(score);
     setTimeout(nextQuestion, 1000);
   } else {
-    wrongSound.play();
     endGame();
   }
 }
