@@ -16,9 +16,9 @@ const quizContainer = document.getElementById('quizContainer');
 const resultEl = document.getElementById('result');
 const restartBtn = document.getElementById('restartBtn');
 
-const correctSound = new Audio('audio/correct.mp3');
-const wrongSound = new Audio('audio/wrong.mp3');
-const timeoutSound = new Audio('audio/timeout.mp3');
+const correctSound = document.getElementById('correctSound');
+const wrongSound = document.getElementById('wrongSound');
+const timeoutSound = document.getElementById('timeoutSound');
 
 function arabicNumber(num) {
   return num.toString().replace(/[0-9]/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
