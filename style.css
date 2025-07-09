@@ -9,3 +9,22 @@ button:hover { background-color: #45a049; }
 #score { margin-top: 10px; }
 footer { margin-top: 50px; font-size: 0.9em; }
 footer img { width: 32px; margin: 0 10px; vertical-align: middle; }
+#username {
+  margin: 20px 0;
+  padding: 10px;
+  font-size: 1em;
+}
+
+#question {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+#choices {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* مسافة بين الأزرار */
+}
