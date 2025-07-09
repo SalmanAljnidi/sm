@@ -30,6 +30,10 @@ function startGame() {
   score = 0;
   used = [];
   scoreEl.textContent = arabicNumber(score);
+  // تهيئة تشغيل الصوت — تشغيل ثم إيقاف سريع لتفادي التأخير لاحقًا
+correctSound.play().then(() => correctSound.pause()).catch(() => {});
+wrongSound.play().then(() => wrongSound.pause()).catch(() => {});
+timeoutSound.play().then(() => timeoutSound.pause()).catch(() => {});
   nextQuestion();
 }
 
