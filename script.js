@@ -59,16 +59,28 @@ function nextQuestion() {
   answers.forEach(ans => {
   const btn = document.createElement('button');
   btn.textContent = arabicNumber(ans);
-  btn.onclick = () => {
-    if (ans === correct) {
-      correctSound.currentTime = 0;
-      correctSound.play();
-    } else {
-      wrongSound.currentTime = 0;
-      wrongSound.play();
-    }
-    checkAnswer(ans === correct);
-  };
+  btn.onclick = (e) => {
+  // إزالة التحديد من جميع الأزرار
+  document.querySelectorAll('#choices button').forEach(b => b.classList.remove('selected'));
+
+  // تمييز الزر اللي ضغط عليه المستخدم
+  e.target.classList.add('selected');
+
+  // تشغيل الصوت
+  if (ans === correct) {
+    correctSound.currentTime = 0;
+    correctSound.play();
+    score++;
+    scoreEl.textContent = arabicNumber(score);
+    setTimeout(() => {
+      nextQuestion();
+    }, 300);
+  } else {
+    wrongSound.currentTime = 0;
+    wrongSound.play();
+    endGame();
+  }
+};
   choicesEl.appendChild(btn);
 });
   seconds = 15;
