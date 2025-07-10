@@ -69,6 +69,7 @@ answers.forEach(ans => {
     e.target.classList.add('selected');
 
     if (ans === correct) {
+      correctSound.pause();
       correctSound.currentTime = 0;
       correctSound.play();
       score++;
@@ -79,6 +80,7 @@ answers.forEach(ans => {
         nextQuestion();
       };
     } else {
+      wrongSound.pause();
       wrongSound.currentTime = 0;
       wrongSound.play();
       endGame();
