@@ -98,7 +98,7 @@ timer = setInterval(() => {
 }, 1000);
 }
 
-function checkAnswer(correct) {
+function checkAnswer(correct, event) {
   clearInterval(timer);
   
   if (correct) {
