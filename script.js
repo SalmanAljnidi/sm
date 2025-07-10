@@ -68,13 +68,16 @@ function nextQuestion() {
 
   // تشغيل الصوت
   if (ans === correct) {
-    correctSound.currentTime = 0;
-    correctSound.play();
-    score++;
-    scoreEl.textContent = arabicNumber(score);
-    setTimeout(() => {
-      nextQuestion();
-    }, 300);
+  correctSound.currentTime = 0;
+  correctSound.play();
+  score++;
+  scoreEl.textContent = arabicNumber(score);
+
+  correctSound.onended = () => {
+    correctSound.onended = null; // تنظيف
+    nextQuestion();
+  };
+}
   } else {
     wrongSound.currentTime = 0;
     wrongSound.play();
