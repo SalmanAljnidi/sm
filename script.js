@@ -100,7 +100,14 @@ timer = setInterval(() => {
 
 function checkAnswer(correct, event) {
   clearInterval(timer);
-  
+
+  // أولًا: نشيل التحديد من كل الأزرار
+document.querySelectorAll('#choices button').forEach(btn => {
+  btn.classList.remove('selected');
+});
+
+// ثانيًا: نحدد الزر اللي ضغط عليه المستخدم
+event.target.classList.add('selected');
   if (correct) {
   correctSound.currentTime = 0;
   correctSound.play();
