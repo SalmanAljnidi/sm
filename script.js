@@ -56,34 +56,34 @@ function nextQuestion() {
     if (!answers.includes(rand)) answers.push(rand);
   }
   answers.sort(() => Math.random() - 0.5);
-  answers.forEach(ans => {
+answers.forEach(ans => {
   const btn = document.createElement('button');
   btn.textContent = arabicNumber(ans);
   btn.onclick = (e) => {
-  // إزالة التحديد من جميع الأزرار
-  document.querySelectorAll('#choices button').forEach(b => b.classList.remove('selected'));
+    clearInterval(timer); // نوقف المؤقت أول ما يضغط
 
-  // تمييز الزر اللي ضغط عليه المستخدم
-  e.target.classList.add('selected');
+    // إزالة التحديد من جميع الأزرار
+    document.querySelectorAll('#choices button').forEach(b => b.classList.remove('selected'));
 
-  // تشغيل الصوت
-  if (ans === correct) {
-  correctSound.currentTime = 0;
-  correctSound.play();
-  score++;
-  scoreEl.textContent = arabicNumber(score);
+    // تمييز الزر اللي ضغطه المستخدم
+    e.target.classList.add('selected');
 
-  correctSound.onended = () => {
-    correctSound.onended = null; // تنظيف
-    nextQuestion();
+    if (ans === correct) {
+      correctSound.currentTime = 0;
+      correctSound.play();
+      score++;
+      scoreEl.textContent = arabicNumber(score);
+
+      correctSound.onended = () => {
+        correctSound.onended = null;
+        nextQuestion();
+      };
+    } else {
+      wrongSound.currentTime = 0;
+      wrongSound.play();
+      endGame();
+    }
   };
-}
-  } else {
-    wrongSound.currentTime = 0;
-    wrongSound.play();
-    endGame();
-  }
-};
   choicesEl.appendChild(btn);
 });
   seconds = 15;
